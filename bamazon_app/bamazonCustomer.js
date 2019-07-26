@@ -65,8 +65,9 @@ function userInquirer() {
                   // console.log(res);
                   var initialStock = parseInt(res[0].stock);
                   var finalStock = initialStock - quantity;
+                  var price = res[0].price;
                   updater(id, finalStock);
-                  console.log('Congrats on yout purchase! there are ' + finalStock + ' left');
+                  costCalculator(price,quantity);
                   //   connection.end(); hmmm what does this line do?
                  
                 }
@@ -84,13 +85,21 @@ function updater(id, finalStock) {
       throw err
     }
     else{
-      console.log("purchase succesful!");
-      userInquirer();
-    }
-    startPage();
+      startPage();
+      console.log("Purchase Succesful! " + costTotal + ' will be charged to your account.');
+      console.log('Congrats on yout purchase! there are ' + finalStock + ' left');
 
-    
+      // userInquirer();
+     
+    }
   });
 };
+function costCalculator(price,quantity){
+  costTotal = price*quantity; 
+  // console.log(costTotal + ' will be charged to your account');
+   };
 
+//goals 
+//after transaction display 'startPage()' after the user reads 'purcahse succesful'
+//display cost of tansaction!
 
